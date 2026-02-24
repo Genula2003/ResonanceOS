@@ -1,73 +1,126 @@
-# React + TypeScript + Vite
+🚀 ResonanceOS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ResonanceOS is an offline-first Student Trajectory & Intervention Operating System built with Tauri + Rust + SQLite + React.
 
-Currently, two official plugins are available:
+It goes beyond traditional school management systems by modeling students as dynamic state vectors, detecting instability early, and recommending optimized interventions using a deterministic trajectory engine.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🧠 Core Concept
 
-## React Compiler
+ResonanceOS models each student using a structured state vector:
+E — Engagement
+M — Mastery
+S — Stability
+P — Support
+L — Load
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The system:
+-Detects phase shifts in learning behavior
+-Computes a 0–100 risk score
+-Recommends minimal-cost interventions
+-Enforces strict role-based access control
+-Separates academic and financial data securely
 
-## Expanding the ESLint configuration
+🏗 Architecture
+-Frontend
+-React + TypeScript + Vite
+-TailwindCSS + shadcn/ui
+-Role-aware routing
+-Offline-capable desktop UI
+-Backend
+-Rust (Tauri v2)
+-SQLite (local database)
+-SQLx migrations
+-RBAC middleware
+-Deterministic trajectory engine
+-Audit logging
+-Photo storage pipeline
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+🔐 Roles & Access Control
+Role	              -  Access
+Admin	              -  Full system access
+Teacher  	          -  Student academic data (attendance, assessments, notes, interventions)
+Management/Finance	-  Fee plans, invoices, payments (no access to sensitive academic data)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+RBAC is enforced at the backend command level — not just UI hiding.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+📊 Key Features
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+📈 Student trajectory modeling
+⚠ Phase-change early warning detection
+🎯 Minimal-lever intervention recommendations
+📚 Attendance & assessment tracking
+💰 Finance module with late fee logic
+🖼 Secure student/staff photo storage
+📂 CSV import/export with validation
+📝 Audit logging system
+🔄 Backup & restore support
+💾 Fully offline desktop operation
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+🚀 Getting Started
+1. Install dependencies
+        npm install
+2. Run in development mode
+        npm run tauri dev
+3. Build production app
+        npm run tauri build
+   
+🧪 Demo Accounts
+(Seeded in development mode)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+admin@local / Admin123!
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+teacher@local / Teacher123!
+
+finance@local / Finance123!
+
+🗄 Database
+
+SQLite database stored in OS AppData directory
+
+Automatic migrations
+
+Backup before schema changes
+
+Manual export/import support
+
+📸 Photo Storage
+
+Photos are stored securely in:
+
+AppData/
+  student_photos/
+  staff_photos/
+
+The database stores only file paths — not image blobs.
+
+🧮 Trajectory Engine
+
+The system computes:
+-Rolling attendance trends
+-Score volatility
+-Submission entropy
+-Phase instability signals
+-Risk score (0–100)
+-Performance band (A–F)
+-Optimized intervention recommendation
+-All calculations are deterministic and transparent.
+
+📦 Tech Stack
+Tauri v2
+Rust
+SQLite (SQLx)
+React
+TypeScript
+TailwindCSS
+
+Vite
+
+📜 License
+
+Apache 2.0 License
+
+🌍 Vision
+
+ResonanceOS is designed as a learning dynamics operating system — not just a record-keeping tool.
+
+It provides schools with structural insight into student progression, stability, and leverage — helping leadership intervene earlier and more intelligently.
