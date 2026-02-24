@@ -1,6 +1,6 @@
 🚀 ResonanceOS
 
-ResonanceOS is an offline-first Student Trajectory & Intervention Operating System built with Tauri + Rust + SQLite + React.
+ResonanceOS is an offline-first Student Trajectory & Intervention Operating System built with Tauri, Rust, SQLite, and React.
 
 It goes beyond traditional school management systems by modeling students as dynamic state vectors, detecting instability early, and recommending optimized interventions using a deterministic trajectory engine.
 
@@ -22,7 +22,7 @@ The system:
 
 Detects phase shifts in learning behavior
 
-Computes a 0–100 risk score
+Computes a 0 to 100 risk score
 
 Recommends minimal-cost interventions
 
@@ -31,8 +31,7 @@ Enforces strict role-based access control
 Separates academic and financial data securely
 
 🏗 Architecture
-
-Frontend
+🎨 Frontend
 
 React + TypeScript + Vite
 
@@ -40,13 +39,13 @@ TailwindCSS + shadcn/ui
 
 Role-aware routing
 
-Offline-capable desktop UI
+Desktop UI powered by Tauri
 
-Backend
+🦀 Backend
 
-Rust (Tauri v2)
+Rust with Tauri v2
 
-SQLite (local database)
+SQLite local database
 
 SQLx migrations
 
@@ -56,53 +55,56 @@ Deterministic trajectory engine
 
 Audit logging
 
-Photo storage pipeline
+Secure photo storage
 
 🔐 Roles & Access Control
 Role	Access
 Admin	Full system access
-Teacher	Student academic data (attendance, assessments, notes, interventions)
-Management/Finance	Fee plans, invoices, payments (no access to sensitive academic data)
+Teacher	Academic modules (attendance, assessments, notes, interventions)
+Finance	Fee plans, invoices, payments (no academic data access)
 
-RBAC is enforced at the backend command level — not just UI hiding.
+RBAC is enforced at the backend command level, not just hidden in the UI.
 
-📊 Key Features
+✨ Key Features
 
-📈 Student trajectory modeling
+Student trajectory modeling
 
-⚠ Phase-change early warning detection
+Phase-change early warning detection
 
-🎯 Minimal-lever intervention recommendations
+Minimal-lever intervention recommendations
 
-📚 Attendance & assessment tracking
+Attendance and assessment tracking
 
-💰 Finance module with late fee logic
+Finance module with late-fee logic
 
-🖼 Secure student/staff photo storage
+Secure student and staff photo storage
 
-📂 CSV import/export with validation
+CSV import and export with validation
 
-📝 Audit logging system
+Full audit logging
 
-🔄 Backup & restore support
+Backup and restore support
 
-💾 Fully offline desktop operation
+Fully offline desktop operation
 
 🚀 Getting Started
-1. Install dependencies
+Install dependencies
 npm install
-2. Run in development mode
+Run in development mode
 npm run tauri dev
-3. Build production app
+Build production app
 npm run tauri build
 🧪 Demo Accounts
 
-(Seeded in development mode)
+Seeded in development mode:
 
+Admin
 admin@local / Admin123!
 
+Teacher
 teacher@local / Teacher123!
 
+Finance
 finance@local / Finance123!
 
 🗄 Database
@@ -113,17 +115,19 @@ Automatic migrations
 
 Backup before schema changes
 
-Manual export/import support
+Manual export and import support
 
 📸 Photo Storage
 
-Photos are stored securely in:
+Photos stored in OS AppData directory
 
-AppData/
-  student_photos/
-  staff_photos/
+student_photos folder
 
-The database stores only file paths — not image blobs.
+staff_photos folder
+
+Database stores only file paths
+
+No image blobs stored in SQLite
 
 🧮 Trajectory Engine
 
@@ -137,21 +141,21 @@ Submission entropy
 
 Phase instability signals
 
-Risk score (0–100)
+Risk score from 0 to 100
 
-Performance band (A–F)
+Performance band from A to F
 
-Optimized intervention recommendation
+Optimized intervention recommendations
 
 All calculations are deterministic and transparent.
 
-📦 Tech Stack
+🛠 Tech Stack
 
 Tauri v2
 
 Rust
 
-SQLite (SQLx)
+SQLite
 
 React
 
@@ -164,9 +168,3 @@ Vite
 📜 License
 
 MIT License
-
-🌍 Vision
-
-ResonanceOS is designed as a learning dynamics operating system — not just a record-keeping tool.
-
-It provides schools with structural insight into student progression, stability, and leverage — helping leadership intervene earlier and more intelligently.
