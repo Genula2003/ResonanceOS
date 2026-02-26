@@ -8,6 +8,7 @@ mod csv_io;
 mod audit;
 mod seed;
 
+use tauri::menu::{Menu, MenuItem, Submenu};
 use tauri::Manager;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -15,6 +16,43 @@ pub fn run() {
     tauri::Builder::default()
         .setup(|app| {
             let handle = app.handle().clone();
+
+            let quit = MenuItem::with_id(app, "quit", "Quit", true, None::<&str>)?;
+            let file_menu = Submenu::with_items(app, "File", true, &[&quit])?;
+
+            #[cfg(debug_assertions)]
+            let view_menu = {
+                let reload = MenuItem::with_id(app, "reload", "Reload", true, None::<&str>)?;
+                let devtools = MenuItem::with_id(app, "devtools", "Toggle Developer Tools", true, None::<&str>)?;
+                Submenu::with_items(app, "View", true, &[&reload, &devtools])?
+            };
+
+            #[cfg(not(debug_assertions))]
+            let menu = Menu::with_items(app, &[&file_menu])?;
+
+            #[cfg(debug_assertions)]
+            let menu = Menu::with_items(app, &[&file_menu, &view_menu])?;
+
+            app.set_menu(menu)?;
+
+            app.on_menu_event(move |app, event| {
+                if event.id() == "quit" {
+                    app.exit(0);
+                } else if event.id() == "reload" {
+                     if let Some(window) = app.get_webview_window("main") {
+                         let _ = window.eval("window.location.reload()");
+                     }
+                } else if event.id() == "devtools" {
+                     if let Some(window) = app.get_webview_window("main") {
+                         if window.is_devtools_open() {
+                             window.close_devtools();
+                         } else {
+                             window.open_devtools();
+                         }
+                     }
+                }
+            });
+
             tauri::async_runtime::spawn(async move {
                 match db::init_db(&handle).await {
                     Ok(pool) => {

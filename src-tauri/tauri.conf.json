@@ -1,8 +1,8 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "resonance-school-engine",
+  "productName": "ResonanceOS",
   "version": "0.1.0",
-  "identifier": "com.tauri.dev",
+  "identifier": "com.genula.resonanceos",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:1420",
@@ -12,9 +12,11 @@
   "app": {
     "windows": [
       {
-        "title": "Resonance School Engine (v1)",
-        "width": 800,
-        "height": 600,
+        "label": "main",
+        "title": "ResonanceOS",
+        "width": 1200,
+        "height": 720,
+        "center": true,
         "resizable": true,
         "fullscreen": false
       }
