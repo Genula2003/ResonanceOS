@@ -1,170 +1,187 @@
-🚀 ResonanceOS
+# 🚀 ResonanceOS
 
 ResonanceOS is an offline-first Student Trajectory & Intervention Operating System built with Tauri, Rust, SQLite, and React.
 
 It goes beyond traditional school management systems by modeling students as dynamic state vectors, detecting instability early, and recommending optimized interventions using a deterministic trajectory engine.
 
-🧠 Core Concept
+## 🧠 Core Concept
 
 ResonanceOS models each student using a structured state vector:
 
-E — Engagement
-
-M — Mastery
-
-S — Stability
-
-P — Support
-
-L — Load
+*   **E** — Engagement
+*   **M** — Mastery
+*   **S** — Stability
+*   **P** — Support
+*   **L** — Load
 
 The system:
 
-Detects phase shifts in learning behavior
+*   Detects phase shifts in learning behavior
+*   Computes a 0 to 100 risk score
+*   Recommends minimal-cost interventions
+*   Enforces strict role-based access control
+*   Separates academic and financial data securely
 
-Computes a 0 to 100 risk score
+## 🏗 Architecture
 
-Recommends minimal-cost interventions
+### 🎨 Frontend
 
-Enforces strict role-based access control
+*   React + TypeScript + Vite
+*   TailwindCSS + shadcn/ui
+*   Role-aware routing
+*   Desktop UI powered by Tauri
 
-Separates academic and financial data securely
+### 🦀 Backend
 
-🏗 Architecture
-🎨 Frontend
+*   Rust with Tauri v2
+*   SQLite local database
+*   SQLx migrations
+*   RBAC middleware
+*   Deterministic trajectory engine
+*   Audit logging
+*   Secure photo storage
 
-React + TypeScript + Vite
+## 🔐 Roles & Access Control
 
-TailwindCSS + shadcn/ui
-
-Role-aware routing
-
-Desktop UI powered by Tauri
-
-🦀 Backend
-
-Rust with Tauri v2
-
-SQLite local database
-
-SQLx migrations
-
-RBAC middleware
-
-Deterministic trajectory engine
-
-Audit logging
-
-Secure photo storage
-
-🔐 Roles & Access Control
-Role	Access
-Admin	Full system access
-Teacher	Academic modules (attendance, assessments, notes, interventions)
-Finance	Fee plans, invoices, payments (no academic data access)
+| Role | Access |
+| :--- | :--- |
+| **Admin** | Full system access |
+| **Teacher** | Academic modules (attendance, assessments, notes, interventions) |
+| **Finance** | Fee plans, invoices, payments (no academic data access) |
 
 RBAC is enforced at the backend command level, not just hidden in the UI.
 
-✨ Key Features
+## ✨ Key Features
 
-Student trajectory modeling
+*   Student trajectory modeling
+*   Phase-change early warning detection
+*   Minimal-lever intervention recommendations
+*   Attendance and assessment tracking
+*   Finance module with late-fee logic
+*   Secure student and staff photo storage
+*   CSV import and export with validation
+*   Full audit logging
+*   Backup and restore support
+*   Fully offline desktop operation
 
-Phase-change early warning detection
+## 🚀 Getting Started
 
-Minimal-lever intervention recommendations
+### Prerequisites
 
-Attendance and assessment tracking
+*   Node.js (v18+)
+*   Rust (1.77+)
+*   OS-specific build tools (VS C++ Build Tools for Windows, Xcode for macOS, `build-essential` etc. for Linux)
 
-Finance module with late-fee logic
+### Installation
 
-Secure student and staff photo storage
-
-CSV import and export with validation
-
-Full audit logging
-
-Backup and restore support
-
-Fully offline desktop operation
-
-🚀 Getting Started
-Install dependencies
+```bash
 npm install
-Run in development mode
-npm run tauri dev
-Build production app
-npm run tauri build
-🧪 Demo Accounts
+```
+
+### Running the Web App (Browser only)
+
+Use this for rapid frontend development without the Rust backend. Note that backend features (DB, Auth) will not work.
+
+```bash
+npm run dev
+```
+
+### Running the Desktop App (Development)
+
+This runs the Tauri backend and Vite frontend together.
+
+```bash
+npm run tauri:dev
+```
+
+### Building for Production
+
+This builds the web assets and packages the desktop application.
+
+```bash
+npm run tauri:build
+```
+
+The output installers will be in `src-tauri/target/release/bundle/`.
+
+## 🧪 Demo Accounts
 
 Seeded in development mode:
 
-Admin
-admin@local / Admin123!
+*   **Admin**: `admin@local` / `Admin123!`
+*   **Teacher**: `teacher@local` / `Teacher123!`
+*   **Finance**: `finance@local` / `Finance123!`
 
-Teacher
-teacher@local / Teacher123!
+## 🗄 Database
 
-Finance
-finance@local / Finance123!
+*   SQLite database stored in OS AppData directory
+*   Automatic migrations
+*   Backup before schema changes
+*   Manual export and import support
 
-🗄 Database
+## 📸 Photo Storage
 
-SQLite database stored in OS AppData directory
+*   Photos stored in OS AppData directory
+*   `student_photos` folder
+*   `staff_photos` folder
+*   Database stores only file paths
+*   No image blobs stored in SQLite
 
-Automatic migrations
-
-Backup before schema changes
-
-Manual export and import support
-
-📸 Photo Storage
-
-Photos stored in OS AppData directory
-
-student_photos folder
-
-staff_photos folder
-
-Database stores only file paths
-
-No image blobs stored in SQLite
-
-🧮 Trajectory Engine
+## 🧮 Trajectory Engine
 
 The system computes:
 
-Rolling attendance trends
-
-Score volatility
-
-Submission entropy
-
-Phase instability signals
-
-Risk score from 0 to 100
-
-Performance band from A to F
-
-Optimized intervention recommendations
+*   Rolling attendance trends
+*   Score volatility
+*   Submission entropy
+*   Phase instability signals
+*   Risk score from 0 to 100
+*   Performance band from A to F
+*   Optimized intervention recommendations
 
 All calculations are deterministic and transparent.
 
-🛠 Tech Stack
+## 🛠 Tech Stack
 
-Tauri v2
+*   Tauri v2
+*   Rust
+*   SQLite
+*   React
+*   TypeScript
+*   TailwindCSS
+*   Vite
 
-Rust
+## 🔧 Troubleshooting
 
-SQLite
+### Codespaces
 
-React
+If running in GitHub Codespaces, you may need to install system dependencies for Tauri. However, since Codespaces is Linux-based and GUI apps require X11 forwarding (which is tricky in browser), you might mostly use `npm run dev` for frontend work.
 
-TypeScript
+To build the Linux binary in Codespaces, you must install the following dependencies:
 
-TailwindCSS
+```bash
+sudo apt-get update
+sudo apt-get install -y libwebkit2gtk-4.0-dev \
+    build-essential \
+    curl \
+    wget \
+    file \
+    libssl-dev \
+    libgtk-3-dev \
+    libayatana-appindicator3-dev \
+    librsvg2-dev
+```
 
-Vite
+Then run:
 
-📜 License
+```bash
+npm run tauri:build
+```
+
+### Windows
+
+If you get linker errors, ensure you have "Desktop development with C++" installed via Visual Studio Installer.
+
+## 📜 License
 
 MIT License
